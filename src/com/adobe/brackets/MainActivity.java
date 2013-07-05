@@ -11,8 +11,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -28,6 +31,8 @@ public class MainActivity extends Activity {
 
 	BracketsBrowser myBrowser;
 	
+
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +43,14 @@ public class MainActivity extends Activity {
 		myBrowser.initKeys();
 		myBrowser.getSettings().setJavaScriptEnabled(true);
 		myBrowser.getSettings().setDomStorageEnabled(true);
+		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+		if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN){
+			myBrowser.getSettings().setAllowFileAccessFromFileURLs(true); //Maybe you don't need this rule
+			myBrowser.getSettings().setAllowUniversalAccessFromFileURLs(true);
+		} else{
+		   
+		}
+		
 		myBrowser.addJavascriptInterface(new WebAppInterface(this), "Android");
 		myBrowser.loadUrl("file:///android_asset/src/index.html");
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
