@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 		myBrowser.initKeys();
 		myBrowser.getSettings().setJavaScriptEnabled(true);
 		myBrowser.getSettings().setDomStorageEnabled(true);
+		myBrowser.setWebChromeClient(new CustomWebChromeClient());
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 		if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN){
 			myBrowser.getSettings().setAllowFileAccessFromFileURLs(true); //Maybe you don't need this rule
