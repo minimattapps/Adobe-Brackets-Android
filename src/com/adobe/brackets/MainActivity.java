@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
 	    
 	    @JavascriptInterface
 	    public String ListFiles(String path) {
-	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Brackets" + path);
+	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + path);
             sd.mkdirs();
             //gets a list of the files
 	   
@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
 	    
 	    @JavascriptInterface
 	    public String Stat(String path) {
-	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Brackets" + path);
+	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + path);
 	    	if (sd.exists()){
 	    	return String.valueOf(sd.isFile()) + ":" + String.valueOf(sd.isDirectory()) + ":" + String.valueOf(sd.lastModified());
 	    	}
@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
 	    public void CreateDirectory(String path) {
 	    	
 
-	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Brackets" + path);
+	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + path);
 	    	sd.mkdir();
 	    
 	    }
@@ -107,8 +107,8 @@ public class MainActivity extends Activity {
 	    @JavascriptInterface
 	    public void Rename(String oldPath,String newPath) {
 	    	
-	    	File oldfile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Brackets" + oldPath);
-	    	File newfile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Brackets" + newPath);
+	    	File oldfile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + oldPath);
+	    	File newfile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + newPath);
             oldfile.renameTo(newfile);
 	    
 	    }
@@ -120,7 +120,7 @@ public class MainActivity extends Activity {
 	    		data = "";
 	    	}
 	    	 try {
-	 	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Brackets" + path);
+	 	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + path);
 	 	    	
 	    		 FileWriter filewriter = new FileWriter(sd);
 	             BufferedWriter out = new BufferedWriter(filewriter);
@@ -137,7 +137,7 @@ public class MainActivity extends Activity {
 	    
 	    @JavascriptInterface
 	    public String ReadFile(String path) {
-	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Brackets" + path);
+	    	File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + path);
 	    	try {
 				FileInputStream fin = new FileInputStream(sd);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(fin));
